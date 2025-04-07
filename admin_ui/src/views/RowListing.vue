@@ -85,6 +85,7 @@
               </p>
               <template v-else>
                 <table>
+                  <thead>
                   <tr>
                     <th>
                       <input
@@ -114,7 +115,8 @@
                     </th>
                     <th></th>
                   </tr>
-
+                  </thead>
+                  <tbody>
                   <tr v-bind:key="row[pkName]" v-for="row in rows">
                     <td>
                       <input
@@ -257,6 +259,7 @@
                       </span>
                     </td>
                   </tr>
+                  </tbody>
                 </table>
 
                 <p id="result_count">
