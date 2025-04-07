@@ -321,35 +321,35 @@
 import axios from "axios";
 import { defineComponent, type PropType } from "vue";
 
-import AddRowModal from "../components/AddRowModal.vue";
-import BaseView from "./BaseView.vue";
-import BulkUpdateModal from "../components/BulkUpdateModal.vue";
-import BulkDeleteButton from "../components/BulkDeleteButton.vue";
-import CSVButton from "../components/CSVButton.vue";
-import DeleteButton from "../components/DeleteButton.vue";
-import DropDownMenu from "../components/DropDownMenu.vue";
-import ChangePageSize from "../components/ChangePageSize.vue";
-import MediaViewer from "../components/MediaViewer.vue";
-import Pagination from "../components/Pagination.vue";
-import RowFilter from "../components/RowFilter.vue";
-import OrderByModal from "../components/OrderByModal.vue";
-import Tooltip from "../components/Tooltip.vue";
 import {
+  getFormat,
+  getType,
   type APIResponseMessage,
   type Choice,
-  type Schema,
   type MediaViewerConfig,
   type OrderByConfig,
   type RowID,
-  getType,
-  getFormat,
+  type Schema,
 } from "@/interfaces";
 import {
   deserialiseOrderByString,
   parseErrorResponse,
-  readableInterval,
   readable,
+  readableInterval,
 } from "@/utils";
+import AddRowModal from "../components/AddRowModal.vue";
+import BulkDeleteButton from "../components/BulkDeleteButton.vue";
+import BulkUpdateModal from "../components/BulkUpdateModal.vue";
+import ChangePageSize from "../components/ChangePageSize.vue";
+import CSVButton from "../components/CSVButton.vue";
+import DeleteButton from "../components/DeleteButton.vue";
+import DropDownMenu from "../components/DropDownMenu.vue";
+import MediaViewer from "../components/MediaViewer.vue";
+import OrderByModal from "../components/OrderByModal.vue";
+import Pagination from "../components/Pagination.vue";
+import RowFilter from "../components/RowFilter.vue";
+import Tooltip from "../components/Tooltip.vue";
+import BaseView from "./BaseView.vue";
 
 export default defineComponent({
   props: {
@@ -435,12 +435,10 @@ export default defineComponent({
     // For example {'genre': {1: 'Sci-Fi'}}
     choicesLookup() {
       let schema = this.schema;
-      const output: {
-        [key: string]: { [key: string | number]: string } | null;
-      } = {};
+      const output: Record<string, Record<string | number, string> |  null> = {};
 
       for (const [columnName, config] of Object.entries(schema.properties)) {
-        const choices = config.extra.choices;
+        const choices = (config as any).extra.choices;
 
         const reducer = (
           accumulator: { [key: string]: any },
@@ -451,7 +449,7 @@ export default defineComponent({
         };
 
         if (choices) {
-          output[columnName] = Object.values(choices).reduce(reducer, {});
+          output[columnName] = Object.values(choices).reduce(reducer, {}) as any;
         } else {
           output[columnName] = null;
         }

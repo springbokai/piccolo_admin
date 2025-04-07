@@ -12,6 +12,8 @@
       "vue": ["node_modules/vue/dist/vue.runtime.esm-bundler"]
     },
     "types": ["vite/client"],
-    "lib": ["dom", "dom.iterable", "esnext"]
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   }
 }

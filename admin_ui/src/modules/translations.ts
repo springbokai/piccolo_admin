@@ -1,11 +1,11 @@
 import axios from "axios";
 
-import i18n from "@/translations";
 import type {
-  TranslationsListAPIResponse,
-  TranslationListItemAPI,
   TranslationAPIResponse,
+  TranslationListItemAPI,
+  TranslationsListAPIResponse,
 } from "@/interfaces";
+import i18n from "@/translations";
 import type { Context } from "./interfaces";
 
 const DEFAULT_LANGUAGE_KEY = "piccoloAdminDefaultLanguage";
@@ -101,7 +101,7 @@ export default {
         response.data.language_code,
         response.data.translations
       );
-      i18n.global.locale = response.data.language_code;
+      i18n.global.locale.value = response.data.language_code;
     },
   },
 };
