@@ -4,7 +4,7 @@ import {
   getType,
   isNullable,
 } from "@/interfaces";
-import * as moment from "moment";
+import moment from "moment";
 import router from "./router";
 
 /*****************************************************************************/
