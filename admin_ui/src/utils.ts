@@ -1,11 +1,11 @@
 import {
-  type Schema,
   type OrderByConfig,
+  type Schema,
   getType,
   isNullable,
 } from "@/interfaces";
+import * as moment from "moment";
 import router from "./router";
-import moment from "moment";
 
 /*****************************************************************************/
 // Filters

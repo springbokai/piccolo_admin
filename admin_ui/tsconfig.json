@@ -1,18 +1,17 @@
 {
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
   "compilerOptions": {
+    "module": "ESNext",
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+    "moduleResolution": "node",
+    "target": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "vue": ["node_modules/vue/dist/vue.runtime.esm-bundler"]
     },
     "types": ["vite/client"],
-    "ignoreDeprecations": "5.0",
-    "lib": ["dom", "dom.iterable", "es2021"]
-  },
-
-  "references": [
-    {
-      "path": "./tsconfig.vite-config.json"
-    }
-  ]
+    "lib": ["dom", "dom.iterable", "esnext"]
+  }
 }
